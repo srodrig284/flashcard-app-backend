@@ -4,12 +4,12 @@ function Flashcard() {
     {
         return new Flashcard();
     }
+    var front = "";
+    var back = "";
 };
 
 Flashcard.prototype.getBasicQuestion = function(){
-    var front = "";
-    var back = "";
-
+    
 };
 
 Flashcard.prototype.getClozeQuestion = function(){

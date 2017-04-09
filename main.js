@@ -39,6 +39,7 @@ var myQuestions = require("./questions.js");
 var name = "";  // user name
 var correct_answers = 0,
     wrong_answers = 0;
+var loops = o;
 
 /**
  * Start new cloze test. Prompt user for type of test they want, either basic or cloze
@@ -71,20 +72,20 @@ function startTest(gameType, userName){
     // Gets all of the questions from the questions.js file.
     var questionsList = myQuestions.questions.gameType;
     var arrayLength = questionsList.length;
-    var loops = o;
 
-    // through the questions and prompt the user for the answer
+    // loop through the questions and prompt the user for the answer
     while(loops < arrayLength)
     {
         // create an instance of Flashcard object
         if(gameType === "Basic")
         {  // it's basic
-            
+            newCard.getBasicQuestion();
         }
         else
         { // it's cloze
-
+            newCard.getClozeQuestion();
         }
+
     }
 }
 
