@@ -58,8 +58,13 @@ function startClozeTest() {
             name: "list"
         }
     ]).then(function(answers) {
+        // Gets all of the questions from the questions.js file.
+        var testType = user.list;
+        var questionsList = myQuestions.questions.testType;
+        var arrayLength = questionsList.length;
+
         // calls the startTest function
-        startTest(user.list, user.name);
+        startTest(user.list, arrayLength, user.name);
     });
 };
 
@@ -68,11 +73,7 @@ function startClozeTest() {
  * @param gameType
  * @param userName
  */
-function startTest(gameType, userName){
-    // Gets all of the questions from the questions.js file.
-    var questionsList = myQuestions.questions.gameType;
-    var arrayLength = questionsList.length;
-
+function startTest(gameType, arrayLength, userName){
     // loop through the questions and prompt the user for the answer
     while(loops < arrayLength)
     {
