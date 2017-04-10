@@ -33,8 +33,8 @@ var Flashcard = require("./card.js");
 var newCard = Flashcard();
 
 // Grabs the questions variables
-var myQuestions = require("./questions");
-
+// var myQuestions = require("./questions");
+var myQuestions = require( "./questions.json" );
 
 // global variables
 var name = "";  // user name
@@ -61,7 +61,7 @@ function initCards()
     var arrayLength = 0;
 
     // create basic card objects
-    questionsList = myQuestions.questions.Basic;
+    questionsList = myQuestions.Basic;
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
@@ -73,7 +73,7 @@ function initCards()
     }
 
     // create cloze card object
-    questionsList = myQuestions.questions.Cloze;
+    questionsList = myQuestions.Cloze;
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
