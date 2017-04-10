@@ -64,7 +64,7 @@ function initCards()
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
-        var myBasicCard = new newCard.BasicCard(questionsList[i].front, questionsList[i].back);
+       var myBasicCard = new newCard.BasicCard(questionsList[i].front, questionsList[i].back);
             basicArray.push(myBasicCard);
     }
 
@@ -135,11 +135,11 @@ function startBasicTest()
             if(answer.question.toUpperCase().valueOf() === flashCard.back.toUpperCase().valueOf())
             {
                 correct_answers++;
-                console.log("THAT IS CORRECT!!!\n");
+                console.log("\nTHAT IS CORRECT!!!\n");
             }
             else
             {
-                console.log("INCORRECT!  THE CORRECT ANSWER IS: ", flashCard.back + "\n");
+                console.log("\nINCORRECT!  THE CORRECT ANSWER IS: ", flashCard.back + "\n");
             }
             // asked next question
             startBasicTest();
@@ -178,11 +178,11 @@ function startClozeTest()
             if(answer.question.toUpperCase().valueOf() === flashCard.clozedeletion.toUpperCase().valueOf())
             {
                 correct_answers++;
-                console.log("THAT IS CORRECT!!!\n");
+                console.log("\nTHAT IS CORRECT!!!\n");
             }
             else
             {
-                console.log("INCORRECT!  THE CORRECT ANSWER IS: ", flashCard.clozedeletion + "\n");
+                console.log("\nINCORRECT!  THE CORRECT ANSWER IS: ", flashCard.clozedeletion + "\n");
             }
             console.log("COMPLETED SENTENCE IS: ", flashCard.fulltext + "\n");
             // asked next question
@@ -196,8 +196,9 @@ function startClozeTest()
 }
 
 function endGame() {
-    console.log("****** TEST IS OVER ******");
+    console.log("*********** TEST RESULTS ***********");
     console.log("You got " + correct_answers + " correct answer(s) out of " + origArrayLen + " questions.");
+    console.log("************************************\n");
 
     inquirer.prompt([
         {
