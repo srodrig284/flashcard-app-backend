@@ -1,30 +1,49 @@
-// Grabs the questions variables
-var myQuestions = require("./questions.js");
-
 // constructor function for creating card objects
 function Flashcard() {
-    if (!(this instanceof Flashcard))
+    if (this instanceof Flashcard)
+    {
+        this.front = "";
+        this.back = "";
+        this.fulltext = "";
+        this.clozedeletion = "";
+        this.partialtext = "";
+    }
+    else
     {
         return new Flashcard();
     }
-    var front = "";
-    var back = "";
+}
+
+
+Flashcard.prototype.BasicCard = function(front, back){
+    this.front = front;
+    this.back = back;
 };
 
-Flashcard.prototype.getBasicQuestion = function(){
+
+Flashcard.prototype.ClozeCard = function(fulltext, clozedeletion){
     // Gets all of the questions from the questions.js file.
-    var questionsList = myQuestions.questions.Basic;
-    var arrayLength = questionsList.length;
-    // get a random number between 0 and arrayLength
-    var index = Math.floor(Math.random() * arrayLength);
+    this.fulltext = fulltext;
+    this.clozedeletion = clozedeletion;
 
-    this.front = questionsList[index].front;
-    this.back = questionsList[index].back;
+    //Replace 'cloze' text and return new string
+    this.partialtext = this.fulltext.replace(clozedeletion, "...");
+
+    if (fulltext.search(clozedeletion) != -1)
+    {
+        this.partialText = function () {
+            //Replace with 'clozedeletion' text and return new string
+            return this.fulltext.replace(clozedeletion, "...");
+        };
+
+    }
+    else {
+        throw new Error("Cloze text does not appear in full text.")
+    }
+
+    console.log("partial: ", this.partialtext);
+    console.log("cloze: ", this.clozedeletion);
 };
 
-Flashcard.prototype.getClozeQuestion = function(){
-
-};
-
-// exporting our Student constructor
+// exporting our Flaschcard constructor
 module.exports = Flashcard;

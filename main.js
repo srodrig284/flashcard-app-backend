@@ -30,65 +30,200 @@ var inquirer = require("inquirer");
 var Flashcard = require("./card.js");
 
 // Create an instance of the FlashCard. Remember Flashcard is a constructor! Not an object.
-var newCard =  Flashcard();
+var newCard = Flashcard();
 
 // Grabs the questions variables
-var myQuestions = require("./questions.js");
+var myQuestions = require("./questions");
+
 
 // global variables
 var name = "";  // user name
-var correct_answers = 0,
-    wrong_answers = 0;
-var loops = o;
+var correct_answers = 0;
+var basicArray = [];
+var clozeArray = [];
+var questionsAsked = 0;
+var questionsList = [];
+var origArrayLen = 0
+
+/**
+ *
+ */
+function initCards()
+{
+    // clear the global variables
+    correct_answers = 0;
+    basicArray = [];
+    clozeArray = [];
+    questionsAsked = 0;
+    origArrayLen = 0;
+
+    // local variable
+    var arrayLength = 0;
+
+    // create basic card objects
+    questionsList = myQuestions.questions.Basic;
+    arrayLength = questionsList.length;
+    for(var i = 0; i < arrayLength; i++)
+    {
+        var myBasicCard = new newCard.BasicCard(JSON.stringify(questionsList[i].front), JSON.stringify(questionsList[i].back));
+            basicArray.push(myBasicCard);
+            //console.log("Added basic card: " + JSON.stringify(myBasicCard));
+        //console.log("basicArray: ", JSON.stringify(basicArray));
+
+    }
+
+    // create cloze card object
+    questionsList = myQuestions.questions.Cloze;
+    arrayLength = questionsList.length;
+    for(var i = 0; i < arrayLength; i++)
+    {
+        var myClozeCard = new newCard.ClozeCard(questionsList[i].fulltext, questionsList[i].clozedel);
+        clozeArray.push(myClozeCard);
+        console.log("Added Cloze card: " + JSON.stringify(clozeArray[i]));
+    }
+
+    // start test
+    startTest();
+
+
+}
 
 /**
  * Start new cloze test. Prompt user for type of test they want, either basic or cloze
  */
-function startClozeTest() {
+function startTest(){
+
     inquirer.prompt([
-        {
-            type: "input",
-            message: "What is your name?",
-            name: "name"
-        },
         {
             type: "list",
             message: "Select Test Type you want:",
             choices: ["Basic", "Cloze"],
-            name: "list"
+            name: "cardType"
         }
     ]).then(function(answers) {
-        // Gets all of the questions from the questions.js file.
-        var testType = user.list;
-        var questionsList = myQuestions.questions.testType;
-        var arrayLength = questionsList.length;
-
         // calls the startTest function
-        startTest(user.list, arrayLength, user.name);
-    });
-};
-
-/**
- *
- * @param gameType
- * @param userName
- */
-function startTest(gameType, arrayLength, userName){
-    // loop through the questions and prompt the user for the answer
-    while(loops < arrayLength)
-    {
-        // create an instance of Flashcard object
-        if(gameType === "Basic")
-        {  // it's basic
-            newCard.getBasicQuestion();
+        if(answers.cardType === "Basic") {
+            origArrayLen = basicArray.length;
+            startBasicTest();
         }
         else
-        { // it's cloze
-            newCard.getClozeQuestion();
+        {
+            origArrayLen = clozeArray.length;
+            startClozeTest();
         }
+    });
+}
 
+function startBasicTest()
+{
+    if(basicArray.length > 0 && questionsAsked < origArrayLen)
+    {
+        //Get a random number between 0 and current number of cards
+        var randomNumber = Math.floor(Math.random() * (basicArray.length));
+
+        //Grab a basic card object based on random number
+        var flashCard = basicArray[randomNumber];
+
+        // remove that question from the array
+        basicArray.splice(randomNumber, 1);
+
+        questionsAsked++;
+
+        inquirer.prompt([
+            {
+                type: "input",
+                message: flashCard.front,
+                name: "question"
+            }
+
+         ]).then(function(answer) {
+            if(JSON.stringify(answer.question.toUpperCase().valueOf()) === flashCard.back.toUpperCase().valueOf())
+            {
+                correct_answers++;
+                console.log("THAT IS CORRECT!!!\n");
+            }
+            else
+            {
+                console.log("INCORRECT!  THE CORRECT ANSWER IS: ", flashCard.back + "\n");
+            }
+            // asked next question
+            startBasicTest();
+        });
+    }
+    else
+    {
+        endGame();
     }
 }
 
 
+function startClozeTest()
+{
+    if(clozeArray.length > 0 && questionsAsked < origArrayLen)
+    {
+        //Get a random number between 0 and current number of cards
+        var randomNumber = Math.floor(Math.random() * (clozeArray.length));
 
+        //Grab a basic card object based on random number
+        var flashCard = clozeArray[randomNumber];
+
+        // remove that question from the array
+        clozeArray.splice(randomNumber, 1);
+
+        questionsAsked++;
+
+        inquirer.prompt([
+            {
+                type: "input",
+                message: flashCard.partialtext,
+                name: "question"
+            }
+
+        ]).then(function(answer) {
+            console.log("Answer: ", answer.question.toUpperCase().valueOf());
+            console.log("ClozeDel: ", flashCard.clozedeletion.toUpperCase().valueOf());
+            if(answer.question.toUpperCase().valueOf() === flashCard.clozedeletion.toUpperCase().valueOf())
+            {
+                correct_answers++;
+                console.log("THAT IS CORRECT!!!\n");
+            }
+            else
+            {
+                console.log("INCORRECT!  THE CORRECT ANSWER IS: ", flashCard.clozedeletion + "\n");
+            }
+            console.log("COMPLETED SENTANCE IS: ", flashCard.fulltext + "\n");
+            // asked next question
+            startClozeTest();
+        });
+    }
+    else
+    {
+        endGame();
+    }
+}
+
+function endGame() {
+    console.log("****** TEST IS OVER ******");
+    console.log("You got " + correct_answers + " correct answer(s) out of " + origArrayLen + " questions.");
+
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Would you like to do another test round?",
+            name: "again",
+            default: false
+        }
+    ]).then(function (answer) {
+        if (answer.again === true) {
+            // starts new match
+            console.log("got to test is over");
+            initCards();
+        }
+        else {
+            console.log("Come back again soon!");
+        }
+    });
+}
+
+// start test
+initCards();
