@@ -14,13 +14,23 @@ function Flashcard() {
     }
 }
 
-
+/**
+ *
+ * @param front
+ * @param back
+ * @constructor
+ */
 Flashcard.prototype.BasicCard = function(front, back){
     this.front = front;
     this.back = back;
 };
 
-
+/**
+ *
+ * @param fulltext
+ * @param clozedeletion
+ * @constructor
+ */
 Flashcard.prototype.ClozeCard = function(fulltext, clozedeletion){
     // Gets all of the questions from the questions.js file.
     this.fulltext = fulltext;
@@ -40,9 +50,6 @@ Flashcard.prototype.ClozeCard = function(fulltext, clozedeletion){
     else {
         throw new Error("Cloze text does not appear in full text.")
     }
-
-    console.log("partial: ", this.partialtext);
-    console.log("cloze: ", this.clozedeletion);
 };
 
 // exporting our Flaschcard constructor

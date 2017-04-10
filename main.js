@@ -67,9 +67,6 @@ function initCards()
     {
         var myBasicCard = new newCard.BasicCard(JSON.stringify(questionsList[i].front), JSON.stringify(questionsList[i].back));
             basicArray.push(myBasicCard);
-            //console.log("Added basic card: " + JSON.stringify(myBasicCard));
-        //console.log("basicArray: ", JSON.stringify(basicArray));
-
     }
 
     // create cloze card object
@@ -79,7 +76,6 @@ function initCards()
     {
         var myClozeCard = new newCard.ClozeCard(questionsList[i].fulltext, questionsList[i].clozedel);
         clozeArray.push(myClozeCard);
-        console.log("Added Cloze card: " + JSON.stringify(clozeArray[i]));
     }
 
     // start test
@@ -180,8 +176,6 @@ function startClozeTest()
             }
 
         ]).then(function(answer) {
-            console.log("Answer: ", answer.question.toUpperCase().valueOf());
-            console.log("ClozeDel: ", flashCard.clozedeletion.toUpperCase().valueOf());
             if(answer.question.toUpperCase().valueOf() === flashCard.clozedeletion.toUpperCase().valueOf())
             {
                 correct_answers++;
@@ -191,7 +185,7 @@ function startClozeTest()
             {
                 console.log("INCORRECT!  THE CORRECT ANSWER IS: ", flashCard.clozedeletion + "\n");
             }
-            console.log("COMPLETED SENTANCE IS: ", flashCard.fulltext + "\n");
+            console.log("COMPLETED SENTENCE IS: ", flashCard.fulltext + "\n");
             // asked next question
             startClozeTest();
         });
@@ -216,7 +210,6 @@ function endGame() {
     ]).then(function (answer) {
         if (answer.again === true) {
             // starts new match
-            console.log("got to test is over");
             initCards();
         }
         else {
