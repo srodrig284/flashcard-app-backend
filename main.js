@@ -33,7 +33,6 @@ var Flashcard = require("./card.js");
 var newCard = Flashcard();
 
 // Grabs the questions variables
-// var myQuestions = require("./questions");
 var myQuestions = require( "./questions.json" );
 
 // global variables
@@ -65,7 +64,7 @@ function initCards()
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
-        var myBasicCard = new newCard.BasicCard(JSON.stringify(questionsList[i].front), JSON.stringify(questionsList[i].back));
+        var myBasicCard = new newCard.BasicCard(questionsList[i].front, questionsList[i].back);
             basicArray.push(myBasicCard);
     }
 
@@ -133,7 +132,7 @@ function startBasicTest()
             }
 
          ]).then(function(answer) {
-            if(JSON.stringify(answer.question.toUpperCase().valueOf()) === flashCard.back.toUpperCase().valueOf())
+            if(answer.question.toUpperCase().valueOf() === flashCard.back.toUpperCase().valueOf())
             {
                 correct_answers++;
                 console.log("THAT IS CORRECT!!!\n");
