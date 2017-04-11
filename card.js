@@ -32,7 +32,6 @@ Flashcard.prototype.BasicCard = function(front, back){
  * @constructor
  */
 Flashcard.prototype.ClozeCard = function(fulltext, clozedeletion){
-    // Gets all of the questions from the questions.js file.
     this.fulltext = fulltext;
     this.clozedeletion = clozedeletion;
 

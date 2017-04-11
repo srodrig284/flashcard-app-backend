@@ -1,4 +1,4 @@
-"use strict";  // javascript keyword - adds more rules to your code.  good if you're using new version of javascript.
+//"use strict";  // javascript keyword - adds more rules to your code.  good if you're using new version of javascript.
 
 /**
  * # Unit 11 Assignment: Cloze Constructors
@@ -27,10 +27,12 @@
 var inquirer = require("inquirer");
 
 // requiring our Card module exported from card.js
-var Flashcard = require("./card.js");
+//var Flashcard = require("./card.js");
+var CreateClozeCard = require("./ClozeCard");
+var CreateBasicCard = require("./BasicCard");
 
 // Create an instance of the FlashCard. Remember Flashcard is a constructor! Not an object.
-var newCard = Flashcard();
+//var newCard = Flashcard();
 
 // Grabs the questions variables
 var myQuestions = require( "./questions.json" );
@@ -64,7 +66,7 @@ function initCards()
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
-       var myBasicCard = new newCard.BasicCard(questionsList[i].front, questionsList[i].back);
+       var myBasicCard = CreateBasicCard(questionsList[i].front, questionsList[i].back);
             basicArray.push(myBasicCard);
     }
 
@@ -73,13 +75,12 @@ function initCards()
     arrayLength = questionsList.length;
     for(var i = 0; i < arrayLength; i++)
     {
-        var myClozeCard = new newCard.ClozeCard(questionsList[i].fulltext, questionsList[i].clozedel);
+        var myClozeCard = CreateClozeCard(questionsList[i].fulltext, questionsList[i].clozedel);
         clozeArray.push(myClozeCard);
     }
 
     // start test
     startTest();
-
 
 }
 
