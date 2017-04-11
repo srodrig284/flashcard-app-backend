@@ -1,4 +1,4 @@
-//"use strict";  // javascript keyword - adds more rules to your code.  good if you're using new version of javascript.
+"use strict";  // javascript keyword - adds more rules to your code.  good if you're using new version of javascript.
 
 /**
  * # Unit 11 Assignment: Cloze Constructors
