@@ -2,24 +2,120 @@
   "Basic":
   [
     {
-    "front": "Who was the first president of the United States?",
-    "back": "George Washington"
+      "front": "Which actor plays the title role in the feature film 'Deadpool'?",
+      "back": "Ryan Reynolds"
     },
     {
-    "front": "Who was the 44th president of the United States?",
-    "back": "Barrack Obama"
+      "front": "In the movie 'Deadpool', what is the title character's real name?",
+      "back": "Wade Wilson"
+    },
+    {
+      "front": "In the movie 'Deadpool', the title character crosses the barrier between character and audience.  What is the term for this imagined barrier?",
+      "back": "The fourth wall"
+    },
+    {
+      "front": "What is the name of the blind 'Deadpool' character who is Wade Wilson's roommate?",
+      "back": "Blind Al"
+    },
+    {
+      "front": "Who was the 44th president of the United States?",
+      "back": "Barrack Obama"
+    },
+    {
+      "front": "Which character is the primary villain in the movie 'Deadpool'?",
+      "back": "Ajax"
+    },
+    {
+      "front": "What is Deadpool's primary super power?",
+      "back": "Super Healing"
+    },
+    {
+      "front": "Which character in the movie 'Deadpool' is Wade Wilson's love interest?",
+      "back": "Vanessa Carlysle"
+    },
+    {
+      "front": "Which 'Deadpool' character says, 'Love is blind, Wade?'",
+      "back": "Blind Al"
+    },
+    {
+      "front": "Who was the first president of the United States?",
+      "back": "George Washington"
+    },
+    {
+      "front": "Which country banned the movie 'Deadpool'?",
+      "back": "China"
+    },
+    {
+      "front": "Which 'Deadpool' villain is really named Francis?",
+      "back": "Ajax"
+    },
+    {
+      "front": "Which aircraft do Colossus and Negasonic Teenage Warhead fly in the movie 'Deadpool'?",
+      "back": "Blackbird"
+    },
+    {
+      "front": "Which 'Deadpool' character does actor T.J. Miller play in the film?",
+      "back": "Weasel"
     }
   ],
 
   "Cloze":
   [
     {
-    "fulltext": "George Washington was the first president of the United States.",
-    "clozedel": "George Washington"
+      "fulltext": "Ryan Reynolds plays the title role in the feature film 'Deadpool'.",
+      "clozedel": "Ryan Reynolds"
     },
     {
-    "fulltext": "Barrack Obama was the 44th president of the United States.",
-    "clozedel": "Barrack Obama"
+      "fulltext": "In the movie 'Deadpool', Wade Wilson is the title character's real name.",
+      "clozedel": "Wade Wilson"
+    },
+    {
+      "fulltext": "In the movie 'Deadpool', the title character crosses the barrier between character and audience.  The term for this imagined barrier is the fourth wall.",
+      "clozedel": "the fourth wall"
+    },
+    {
+      "fulltext": "Blind Al is the name of the blind 'Deadpool' character who is Wade Wilson's roommate.",
+      "clozedel": "Blind Al"
+    },
+    {
+      "fulltext": "Ajax is the primary villain in the movie 'Deadpool'.",
+      "clozedel": "Ajax"
+    },
+    {
+      "fulltext": "George Washington was the first president of the United States.",
+      "clozedel": "George Washington"
+    },
+    {
+      "fulltext": "Deadpool's primary super power is super healing.",
+      "clozedel": "super healing"
+    },
+    {
+      "fulltext": "In the movie 'Deadpool', Vanessa Carlysle is Wade Wilson's love interest.",
+      "clozedel": "Vanessa Carlysle"
+    },
+    {
+      "fulltext": "In the movie'Deadpool', Blind Al says, 'Love is blind, Wade.'",
+      "clozedel": "Blind Al"
+    },
+    {
+      "fulltext": "Barrack Obama was the 44th president of the United States.",
+      "clozedel": "Barrack Obama"
+    },
+    {
+      "fulltext": "The movie 'Deadpool' was banned in China.",
+      "clozedel": "China"
+    },
+    {
+      "fulltext": "In 'Deadpool', the villain Ajax is really named Francis.",
+      "clozedel": "Ajax"
+    },
+    {
+      "fulltext": "Colossus and Negasonic Teenage Warhead fly Blackbird in the movie 'Deadpool'.",
+      "clozedel": "Blackbird"
+    },
+    {
+      "fulltext": "In the movie 'Deadpool', actor T.J. Miller plays the character Weasel.",
+      "clozedel": "Weasel"
     }
   ]
 }

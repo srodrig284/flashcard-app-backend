@@ -44,7 +44,8 @@ var basicArray = [];
 var clozeArray = [];
 var questionsAsked = 0;
 var questionsList = [];
-var origArrayLen = 0
+var origArrayLen = 0;
+var NbrOfQuestions = 0;
 
 /**
  *
@@ -89,6 +90,7 @@ function initCards()
  */
 function startTest(){
 
+    console.log("\n**** GET READY TO TEST YOUR KNOWLEDGE ABOUT THE MOVIE 'DEADPOOL' ****\n");
     inquirer.prompt([
         {
             type: "list",
@@ -100,11 +102,19 @@ function startTest(){
         // calls the startTest function
         if(answers.cardType === "Basic") {
             origArrayLen = basicArray.length;
+            // Calculate half the length of the array in order to
+            // determine how many questions to ask.
+            NbrOfQuestions = basicArray.length / 2;
+            //console.log("nbr of questions", NbrOfQuestions);
             startBasicTest();
         }
         else
         {
             origArrayLen = clozeArray.length;
+            // Calculate half the length of the array in order to
+            // determine how many questions to ask.
+            NbrOfQuestions = clozeArray.length / 2;
+            //console.log("nbr of questions", NbrOfQuestions);
             startClozeTest();
         }
     });
@@ -112,7 +122,9 @@ function startTest(){
 
 function startBasicTest()
 {
-    if(basicArray.length > 0 && questionsAsked < origArrayLen)
+    //if(basicArray.length > 0 && questionsAsked < origArrayLen)
+
+    if(questionsAsked < NbrOfQuestions)
     {
         //Get a random number between 0 and current number of cards
         var randomNumber = Math.floor(Math.random() * (basicArray.length));
@@ -155,7 +167,8 @@ function startBasicTest()
 
 function startClozeTest()
 {
-    if(clozeArray.length > 0 && questionsAsked < origArrayLen)
+    //if(clozeArray.length > 0 && questionsAsked < origArrayLen)
+    if(questionsAsked < NbrOfQuestions)
     {
         //Get a random number between 0 and current number of cards
         var randomNumber = Math.floor(Math.random() * (clozeArray.length));
@@ -198,7 +211,7 @@ function startClozeTest()
 
 function endGame() {
     console.log("*********** TEST RESULTS ***********");
-    console.log("You got " + correct_answers + " correct answer(s) out of " + origArrayLen + " questions.");
+    console.log("You got " + correct_answers + " correct answer(s) out of " + NbrOfQuestions + " questions.");
     console.log("************************************\n");
 
     inquirer.prompt([
