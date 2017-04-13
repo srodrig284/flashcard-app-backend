@@ -1,7 +1,8 @@
-
-## flashcard-app-backend
-
 # Unit 11 Assignment: Cloze Constructors
+#### * Created by: Sandra Rodriguez
+#### * UCF Bootcamp
+
+_________________________________________________________
 
 ### Overview
 
@@ -23,3 +24,16 @@ _"George Washington was the first president of the United States."_
 
 _"... was the first president of the United States."_
 
+_______________________________________________________________
+
+### Taking the test
+#### Command Line Commands
+\> node main.js
+
+**** GET READY TO TEST YOUR KNOWLEDGE ABOUT THE MOVIE 'DEADPOOL' ****
+
+? Select Test Type you want: (Use arrow keys)
+
+❯ Basic
+
+  Cloze 
